@@ -9,7 +9,7 @@ import shutil
 
 # Specify old .sqlite file (used to create template) and final template .sqlite file names
 outputdB = 'US_National_template.sqlite'
-outputdBold = 'US_National_region.sqlite'
+outputdBold = 'US_National.sqlite'
 
 #get all commands from old .sql file
 fd = open(outputdBold.replace('ite',''), 'r')
@@ -27,7 +27,7 @@ for command in sqlCommands:
         table_name = command.split('CREATE TABLE ')[1].split(' ')[0]
         table_name = table_name.replace("'",'').replace('"','').replace('`','')
         create_sqlCommands.append(command)
-    if 'INSERT INTO "commodities"' in command:
+    if 'INSERT INTO `commodities' in command:
         create_sqlCommands.append(command)
 
 #write to new .sql file
